@@ -6,7 +6,7 @@ const Navbar = () => {
     const classes = useStyles();
     return(
             <AppBar className = {classes.appBar} color = "primary">
-            <Toolbar>
+            <Toolbar >
                <Button color="inherit" href = "/" startIcon = {<HowToVote/>} >
                <Typography variant="h6" style={{flex:1}}>
                 MATDAAN

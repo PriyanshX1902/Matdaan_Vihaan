@@ -1,11 +1,14 @@
 import {Typography, Container, Grid, CardContent, Card, CardMedia, Button} from '@material-ui/core';
 import useStyles from './Components/styles';
-import Credit from './Components/Credit';
+import Credit from './Components/Credit'
+import Navbar from './Components/Navbar';
 
 const Home = () => {
     const classes = useStyles();
     return(
-        <main>
+      <>
+        <Navbar/>
+        <main>  
         <Container className={classes.cardGrid} maxWidth="md">
         <Typography variant="h2" align="center" color="textPrimary" family="Roboto" gutterBottom>
         MATDAAN
@@ -89,7 +92,9 @@ const Home = () => {
               </div>
             </Container>
           </div>
-        </main>   
+        </main> 
+        <Credit/>
+      </>    
     );
 }
 export default Home;
