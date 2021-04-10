@@ -166,6 +166,66 @@ app.get('/ascandidates/:userid', function(req, res){
     })
 })
 
+app.get('/elections', async function(req, res){
+    const candidateid = req.query.candidateid;
+    const electionid = req.query.electionid;
+    const web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545/"));
+    /*const source = fs.readFileSync('Vote.sol', 'utf8');
+    let jsonContractSource = JSON.stringify({
+        language: 'Solidity',
+        sources: {
+          'Task': {
+              content: source,
+           },
+        },
+        settings: { 
+            outputSelection: {
+                '*': {
+                    '*': ['abi',"evm.bytecode"],   
+                 // here point out the output of the compiled result
+                },
+            },
+        },
+    });
+    const compileCode = solc.compile(jsonContractSource);*/
+    
+    const accounts = await web3.eth.getAccounts();
+    const address = accounts[0];
+    const fromAddress = accounts[2];
+    console.log(accounts);
+    const abidefinition = [{"inputs":[{"internalType":"bytes32[]","name":"candidateNames","type":"bytes32[]"}],"stateMutability":"nonpayable","type":"constructor"},{"inputs":[{"internalType":"bytes32","name":"","type":"bytes32"}],"name":"Votes","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"candidatelist","outputs":[{"internalType":"bytes32","name":"","type":"bytes32"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"bytes32","name":"candidate","type":"bytes32"}],"name":"totalVotesOf","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"bytes32","name":"candidate","type":"bytes32"}],"name":"validCandidate","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"bytes32","name":"candidate","type":"bytes32"}],"name":"voteIncrement","outputs":[],"stateMutability":"nonpayable","type":"function"}];
+    const byteCode = fs.readFileSync('Vote_sol_Ballot.bin').toString();
+  
+    var VotingContract = await new web3.eth.Contract(abidefinition)
+    console.log(abidefinition);
+    var candidatePartyName;
+    let candidatebiglist = [];
+    await db.ref('/elections/'+ electionid + '/candidates/').once('value', snap=>{
+        snap.forEach(childSnap=>{
+            var partyName = childSnap.val().party;
+            candidatebiglist.push(partyName);
+            if(childSnap.val().candidateid===candidateid){
+                candidatePartyName = partyName;
+            }
+        })
+    }).then(()=>{
+        console.log(candidatebiglist);
+        console.log(candidatePartyName);
+    })
+    await VotingContract.deploy({
+            data: byteCode,
+            arguments: [candidatebiglist.map(name=>web3.utils.asciiToHex(name))]
+        }).send({
+            from: address,
+            gas:1000000,
+            gasPrice: '20000000000'
+        }).then((newContractInstance)=>{
+            VotingContract.options.address = newContractInstance.options.address;
+            console.log(newContractInstance.options.address);
+        });
+     
+})
+
 
 
 app.listen(port, console.log('Listening to port 5000'));
