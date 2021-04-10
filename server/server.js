@@ -3,7 +3,8 @@ const app = express();
 import bodyParser from 'body-parser';
 import db from './firebasedatabase.js';
 import cors from 'cors';
-
+import Web3 from 'web3';
+import fs from 'fs';
 
 app.use(
     cors({
@@ -164,6 +165,8 @@ app.get('/ascandidates/:userid', function(req, res){
         console.log(electionlist);
     })
 })
+
+
 
 app.listen(port, console.log('Listening to port 5000'));
 

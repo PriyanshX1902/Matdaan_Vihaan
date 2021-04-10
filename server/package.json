@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon --experimental-json-modules server.js"
+    "start": "nodemon --experimental-json-modules server.js",
+    "solccompile": "solcjs --bin --abi Vote.sol"
   },
   "keywords": [],
   "author": "",
@@ -15,7 +16,7 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "firebase-admin": "^9.6.0",
-    "nodemon": "^2.0.7"
+    "nodemon": "^2.0.7",
+    "web3": "^1.3.5"
   }
-
 }
