@@ -11,6 +11,7 @@ import Dashboard from './Dashboard';
 import Create from './create';
 import Voter from './voter';
 import Candidate from './candidate';
+import Ballot from './Ballot';
 
 const App = () => {
   const [user, setUser] = useState('');
@@ -40,6 +41,7 @@ const App = () => {
           <Route path = '/create' component = {Create}/>
           <Route path = '/voter' component = {Voter}/>
           <Route path = '/candidate' component = {Candidate}/>
+          <Route path = '/elections/:electionId' component = {Ballot} />
         </Switch>
         </Router>
         </CssBaseline>
