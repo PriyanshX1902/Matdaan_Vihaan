@@ -39,17 +39,6 @@ const useStyles = makeStyles((theme) => ({
     height: '50%',
     width: '100%'
   },
-  textField: {
-    marginTop: "20px",
-    width:300
-  },
-  paperStyleCreate: {
-    margin: "20px auto",
-    padding: 20,
-    height: '90vh',
-    width: 550,
-    marginTop: "70px"
-  },
   paperStyleLogin:{
     margin: "20px auto",
     padding: 20,
@@ -63,6 +52,28 @@ const useStyles = makeStyles((theme) => ({
     height: '90vh',
     width: 350,
     marginTop: "70px"
+  },
+  textField: {
+    marginTop: "20px",
+    width:300
+  },
+  paperStyleCreate: {
+    margin: "20px auto",
+    padding: 20,
+    height: '90vh',
+    width: 550,
+    marginTop: "70px"
+  },
+  paperStyleBallot: {
+    margin: "20px auto",
+    padding: 20,
+    height: '90vh',
+    width: 1000,
+    marginTop: "70px"
+  },
+  textFieldCreate: {
+    marginTop: "20px",
+    width:500
   },
   root: {
     '& > *': {

@@ -45,4 +45,54 @@ app.get('/userprofile/:userid', function(req, res){
    });
     
 });
+
+app.post('/createelection', function(req, res){
+    const election = {
+        title: req.body.title,
+        organisation: req.body.organisation,
+        description: req.body.description,
+        date: req.body.date,
+        code: req.body.code,
+        creatorid: req.body.creatorid
+    }
+    db.ref('/elections/'+ election.code).set({
+        title: election.title,
+        organisation: election.organisation,
+        description: election.description,
+        date: election.date,
+        code: election.code,
+        creatorid: election.creatorid
+
+    });
+
+    db.ref('/users/'+ election.creatorid + '/electionscreated/' + election.code).set({
+        title: election.title,
+        organisation: election.organisation,
+        description: election.description,
+        date: election.date,
+        code: election.code
+    })
+
+});
+
+app.post('/voterregistration', function(req, res){
+    db.ref('/elections/'+ req.body.code + '/voters/'+ req.body.voterid).set({
+        voterid: req.body.voterid
+    });
+    db.ref('/users/'+ req.body.voterid + '/asvoter/'+ req.body.code).set({
+        electionCode: req.body.code
+    });
+});
+
+app.post('/candidateregistration', function(req, res){
+    db.ref('/elections/'+ req.body.code + '/candidates/'+ req.body.candidateid).set({
+        candidateid: req.body.candidateid,
+        party: req.body.party
+    });
+    db.ref('/users/'+ req.body.candidateid + '/ascandidate/'+ req.body.code).set({
+        party: req.body.party,
+        electionCode: req.body.code
+    });
+});
+
 app.listen(port, console.log('Listening to port 5000'));

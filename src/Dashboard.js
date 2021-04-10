@@ -73,17 +73,17 @@ const Dashboard = () => {
                     <div className={classes.buttons}>
                 <Grid container spacing={1} justify="center">
                   <Grid item>
-                    <Button variant="contained" color="primary" >
+                    <Button variant="contained" color="primary" href="/candidate">
                       Participate as a Candidate
                     </Button>
                   </Grid>
                   <Grid item>
-                    <Button variant="contained" color="primary" >
+                    <Button variant="contained" color="primary" href="/voter">
                       Participate as a Voter
                     </Button>
                   </Grid>
                   <Grid item>
-                    <Button variant="contained" color="primary">
+                    <Button variant="contained" color="primary" href="/create">
                       Create an Election
                     </Button>
                   </Grid>

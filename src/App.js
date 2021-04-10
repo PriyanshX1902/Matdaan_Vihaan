@@ -6,8 +6,12 @@ import Home from './Home';
 import Login from './login';
 import Signup from './signup';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
-import fire from './firebase';
+import fire from 'firebase';
 import Dashboard from './Dashboard';
+import Create from './create';
+import Voter from './voter';
+import Candidate from './candidate';
+
 const App = () => {
   const [user, setUser] = useState('');
   const authlistener = () =>{
@@ -25,8 +29,6 @@ const App = () => {
     authlistener();
   }, []);
 
-
-
   return (
     <>
         {user ?
@@ -35,6 +37,9 @@ const App = () => {
         <Router>
         <Switch>
           <Route path = '/' exact component = {Dashboard}/>
+          <Route path = '/create' component = {Create}/>
+          <Route path = '/voter' component = {Voter}/>
+          <Route path = '/candidate' component = {Candidate}/>
         </Switch>
         </Router>
         </CssBaseline>
@@ -42,6 +47,7 @@ const App = () => {
         : 
         <>
         <CssBaseline>
+        <Navbar/>
         <Router>
         <Switch>
           <Route path = '/' exact component = {Home} />
@@ -50,6 +56,7 @@ const App = () => {
           
         </Switch>
         </Router>
+        <Credit/>
         </CssBaseline>
         </>}
     </>
@@ -57,4 +64,3 @@ const App = () => {
 }
 
 export default App;
-
