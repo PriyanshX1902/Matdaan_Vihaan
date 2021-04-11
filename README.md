@@ -15,6 +15,8 @@ Our project focuses on making the process of online voting/election more safe,se
   5) Ethereum
   6) web3j
   
+## Devfolio Link
+* [Devfolio Link Here](https://devfolio.co/submissions/matdaan-fed7)
 
 ## Contributors:
 
