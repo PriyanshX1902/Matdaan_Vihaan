@@ -1,11 +1,12 @@
 import useStyles from './Components/styles';
-import {Typography, Container, Button, TextField, Paper } from '@material-ui/core';
+import {Typography, Container, Button, TextField, Paper, ThemeProvider } from '@material-ui/core';
 import LoggedNavbar from './Components/loggedNavbar';
 import React from 'react';
 import fire from './firebase';
 import axios from 'axios';
 import {Alert} from '@material-ui/lab'
 import {useState} from 'react';
+import useTheme from './Components/theme';
 
 const Candidate = () => {
 
@@ -112,8 +113,11 @@ const Candidate = () => {
 
   }
     return(
+      <ThemeProvider theme = {useTheme}>
+        <LoggedNavbar/>
        <main>
-           <LoggedNavbar/>
+           
+           <div className = {classes.container}>
            <Container className = {classes.cardGrid} maxWidth = "md">
         <Typography variant="h2" align="center" color="textPrimary" family="Roboto" gutterBottom>
         PARTICIPATE AS A CANDIDATE
@@ -124,8 +128,8 @@ const Candidate = () => {
         </Typography>
     <form onSubmit = {handleCandidate}>
     {error &&<Alert severity="error" >{error}</Alert>}
-        <TextField required className = {classes.textFieldCreate} variant = "outlined" color = "primary"  label = "Election Code" onChange = {(e)=>{setElectionCode(e.target.value)}}/>
-        <TextField required className = {classes.textFieldCreate} variant = "outlined" color = "primary"  label = "Name of Your Party" onChange = {(e)=>{setPartyName(e.target.value)}}/>
+        <TextField required className = {classes.textFieldCreate} variant = "filled" color = "secondary"  label = "Election Code" onChange = {(e)=>{setElectionCode(e.target.value)}}/>
+        <TextField required className = {classes.textFieldCreate} variant = "filled" color = "secondary"  label = "Name of Your Party" onChange = {(e)=>{setPartyName(e.target.value)}}/>
         <br/> <br/>
      <Typography>Profile Picture</Typography>
       <br />
@@ -156,7 +160,9 @@ const Candidate = () => {
     </Paper>
        
          </Container>
+         </div>
        </main> 
+       </ThemeProvider>
     );
 }
 export default Candidate;

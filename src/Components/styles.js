@@ -6,7 +6,7 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: "10px"
   },
   container: {
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: '#060238',
     padding: theme.spacing(5,0,5)
   },
   icon: {
@@ -18,12 +18,14 @@ const useStyles = makeStyles((theme) => ({
   },
   cardGrid: {
     marginTop: "40px",
-    padding: '20px 0'
+    padding: '20px 0',
+    backgroundColor: '#06004D'
   },
   card: {
     height: '100%',
     display: 'flex',
-    flexDirection: 'column'
+    flexDirection: 'column',
+    backgroundColor: '#011763'
   },
   cardMedia: {
       paddingTop: '56.25%' //16:9
@@ -32,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
      flexGrow: 1 
   },
   footer: {
-      backgroundColor: '#3f51b5',
+    backgroundColor: '#102049',
       padding: '50px 0'
   },
   img: {
@@ -44,16 +46,19 @@ const useStyles = makeStyles((theme) => ({
     padding: 20,
     height: '70vh',
     width: 350,
-    marginTop: "70px"
+    marginTop: "70px",
+    backgroundColor: "#06004D"
   },
   paperStyleSignup:{
     margin: "20px auto",
     padding: 20,
     height: '90vh',
     width: 350,
-    marginTop: "70px"
+    marginTop: "70px",
+    backgroundColor: "#06004D"
   },
   textField: {
+    backgroundColor: '#102049',
     marginTop: "20px",
     width:300
   },
@@ -62,16 +67,19 @@ const useStyles = makeStyles((theme) => ({
     padding: 20,
     height: '90vh',
     width: 550,
-    marginTop: "70px"
+    marginTop: "70px",
+    backgroundColor: "#06004D"
   },
   paperStyleBallot: {
     margin: "20px auto",
     padding: 20,
     height: '90vh',
     width: 1000,
-    marginTop: "70px"
+    marginTop: "70px",
+    backgroundColor: '#060238'
   },
   textFieldCreate: {
+    backgroundColor: '#102049',
     marginTop: "20px",
     width:500
   },

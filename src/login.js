@@ -1,11 +1,12 @@
 import useStyles from './Components/styles';
-import {Button, Checkbox, FormControlLabel, Grid, Link, Paper, TextField, Typography } from '@material-ui/core';
+import {Button, Checkbox, FormControlLabel, Grid, Link, Paper, TextField, ThemeProvider, Typography } from '@material-ui/core';
 import fire from './firebase';
 import { useState } from 'react';
 import Alert from '@material-ui/lab/Alert';
 import { useHistory } from 'react-router';
 import Credit from './Components/Credit'
 import Navbar from './Components/Navbar';
+import useTheme from './Components/theme';
 
 const Login = () => {
     const classes = useStyles();
@@ -43,8 +44,9 @@ const Login = () => {
     return(
     <>
        <Navbar/>
+       <ThemeProvider theme = {useTheme}>
        <main>
-           <Grid >
+           <Grid className = {classes.container}>
                <Paper className = {classes.paperStyleLogin} elevation = {10}>
 
                    <Typography variant = "h5" align = "center" color = "textPrimary" family = "Roboto" gutterBottom>
@@ -53,26 +55,29 @@ const Login = () => {
                    <form onSubmit = {handleLogin}>
                        {emailError && <Alert severity = "error">{emailError}</Alert>}
                        {passwordError && <Alert severity = "error">{passwordError}</Alert>}
-                   <TextField className = {classes.textField} variant = "outlined" color = "primary"  label = "E-mail"  onChange = {(e)=>{setEmail(e.target.value)}} error = {emailError} />
-                   <TextField className = {classes.textField} variant = "outlined" color = "primary"  label = "Password" type = "Password" onChange = {(e)=>{setPassword(e.target.value)}} error = {passwordError}/>
+                   <TextField className = {classes.textField} variant = "filled" color = "secondary"  label = "E-mail"  onChange = {(e)=>{setEmail(e.target.value)}} error = {emailError} />
+                   <TextField className = {classes.textField} variant = "filled" color = "secondary"  label = "Password" type = "Password" onChange = {(e)=>{setPassword(e.target.value)}} error = {passwordError}/>
                    <Button className = {classes.buttons} color = "primary" type = "submit" variant = "contained" fullWidth  >Log in</Button>
                    </form>
                    <FormControlLabel control = {<Checkbox name = "rememberMe" color = "primary"/>} label = "Remember me"/>
                    <p>
                    <Typography variant = "h7"  color = "textPrimary" family = "Roboto" gutterBottom>
                        <Link href = "#" >
+                       <Typography variant = "h7"  color = "textPrimary" family = "Roboto" gutterBottom>   
                        Forgot Password?
+                       </Typography>
                        </Link>
                    </Typography></p>
                    <p>
                    <Typography variant = "h7"  color = "textPrimary" family = "Roboto" gutterBottom>
                     Don't have an account? 
-                    <Link href = "/signup"> Sign Up </Link>
+                    <Link href = "/signup"> <Typography variant = "h7"  color = "textPrimary" family = "Roboto" gutterBottom>Sign Up </Typography></Link>
                     instead     
                    </Typography></p>
                </Paper>
            </Grid>
        </main>
+       </ThemeProvider>
        <Credit/> 
     </>
     );

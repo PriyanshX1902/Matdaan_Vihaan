@@ -1,4 +1,4 @@
-import {Typography, Container, Grid, CardContent, Card, Button, Paper} from '@material-ui/core';
+import {Typography, Container, Grid, CardContent, Card, Button, Paper, ThemeProvider} from '@material-ui/core';
 import LoggedNavbar from './Components/loggedNavbar';
 import useStyles from './Components/styles';
 import fire from './firebase';
@@ -6,6 +6,7 @@ import axios from 'axios';
 import { useEffect, useState, Fragment} from 'react';
 import {DataGrid, GridCellParams} from '@material-ui/data-grid';
 import { useHistory } from 'react-router';
+import useTheme from './Components/theme';
 
 
 const Dashboard = () => {
@@ -138,8 +139,10 @@ const candidatesColumns = [
 
 
     return(
+      <ThemeProvider theme = {useTheme}>
         <main>
         <LoggedNavbar/>
+        <div className = {classes.container}>
         <Container className = {classes.cardGrid} maxWidth = "md">
         <Typography variant="h2" align="center" color="textPrimary" family="Roboto" gutterBottom>
         MATDAAN - DASHBOARD
@@ -226,7 +229,9 @@ const candidatesColumns = [
         </Paper>
         </Grid>
          </Container>
-        </main>   
+         </div>
+        </main>
+        </ThemeProvider>   
     );
 }
 export default Dashboard;

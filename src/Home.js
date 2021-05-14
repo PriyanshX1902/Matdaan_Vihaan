@@ -1,15 +1,18 @@
-import {Typography, Container, Grid, CardContent, Card, CardMedia, Button} from '@material-ui/core';
+import {Typography, Container, Grid, CardContent, Card, CardMedia, Button, ThemeProvider} from '@material-ui/core';
 import useStyles from './Components/styles';
 import Credit from './Components/Credit'
 import Navbar from './Components/Navbar';
+import useTheme from './Components/theme';
 
 const Home = () => {
     const classes = useStyles();
     return(
       <>
         <Navbar/>
+        <ThemeProvider theme = {useTheme}>
         <main>  
-        <Container className={classes.cardGrid} maxWidth="md">
+        <div className = {classes.container}>
+        <Container className={classes.container} maxWidth="md" >
         <Typography variant="h2" align="center" color="textPrimary" family="Roboto" gutterBottom>
         MATDAAN
         </Typography>
@@ -26,7 +29,7 @@ const Home = () => {
                       Transparent
                     </Typography>
                     <Typography>
-                      This is a media card.
+                    The election process and the results are transparent to all candidates and voters!
                     </Typography>
                   </CardContent>
                 </Card>
@@ -43,7 +46,7 @@ const Home = () => {
                       Secure
                     </Typography>
                     <Typography>
-                      This is a media card.
+                    No one can tamper your votes as the entire process is extremely secure due to blockchain used in the back end.
                     </Typography>
                   </CardContent>
                 </Card>
@@ -60,13 +63,14 @@ const Home = () => {
                       Swift
                     </Typography>
                     <Typography>
-                      This is a media card.
+                    You will never have to wait in long queues as you can cast your vote just by a few clicks!
                     </Typography>
                   </CardContent>
                 </Card>
               </Grid>
             </Grid>
-          </Container>        
+          </Container>
+          </div>        
 
           <div className={classes.container}>
             <Container maxWidth="md">
@@ -93,6 +97,7 @@ const Home = () => {
             </Container>
           </div>
         </main> 
+        </ThemeProvider>
         <Credit/>
       </>    
     );

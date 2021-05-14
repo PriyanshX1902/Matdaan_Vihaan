@@ -1,5 +1,5 @@
 import useStyles from './Components/styles';
-import {Button, Grid, Link, Paper, TextField, Typography} from '@material-ui/core';
+import {Button, Grid, Link, Paper, TextField, ThemeProvider, Typography} from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
 import { useState } from 'react';
 import fire from './firebase';
@@ -7,6 +7,7 @@ import axios from 'axios';
 import {useHistory} from 'react-router';
 import Credit from './Components/Credit'
 import Navbar from './Components/Navbar';
+import useTheme from './Components/theme';
 
 const Signup = () => {
     const classes = useStyles();
@@ -78,9 +79,10 @@ const Signup = () => {
     return(
     <>
        <Navbar/>
+       <ThemeProvider theme = {useTheme}>
        <main>
-           <Grid >
-               <Paper className = {classes.paperStyleSignup} elevation = {10}>
+           <Grid className = {classes.container}>
+               <Paper className = {classes.paperStyleSignup} elevation = {10} xs={12} md={12} sm={12}>
                    <Typography variant = "h5" align = "center" color = "textPrimary" family = "Roboto" gutterBottom>
                     Create a new account
                    </Typography>
@@ -89,12 +91,12 @@ const Signup = () => {
                     {usernameError && <Alert severity = "error">{usernameError}</Alert>}
                     {emailError && <Alert severity = "error">{emailError}</Alert>}
                     {passwordError && <Alert severity = "error">{passwordError}</Alert>}
-                   <TextField className = {classes.textField} variant = "outlined" color = "primary"  label = "Name" onChange = {(e)=>setName(e.target.value)} error = {nameError} />
-                   <TextField className = {classes.textField} variant = "outlined" color = "primary"  label = "E-mail id" type = "E-mail" onChange = {(e)=>setEmail(e.target.value)} error = {emailError} />
-                   <TextField className = {classes.textField} variant = "outlined" color = "primary"  label = "Create Username" onChange = {(e)=>setUsername(e.target.value)} error = {usernameError} />
-                   <TextField className = {classes.textField} variant = "outlined" color = "primary"  label = "Phone Number" type = "Number" onChange = {(e)=>setPhoneNumber(e.target.value)}/>
-                   <TextField className = {classes.textField} variant = "outlined" color = "primary"  label = "Create Password" type = "Password" onChange = {(e)=>setPassword(e.target.value)} error = {passwordError} />
-                   <TextField className = {classes.textField} variant = "outlined" color = "primary"  label = "Confirm Password" type = "Password" onChange = {(e)=>setCPassword(e.target.value)}/>
+                   <TextField className = {classes.textField} variant = "filled" color = "secondary"  label = "Name" onChange = {(e)=>setName(e.target.value)} error = {nameError} />
+                   <TextField className = {classes.textField} variant = "filled" color = "secondary"  label = "E-mail id" type = "E-mail" onChange = {(e)=>setEmail(e.target.value)} error = {emailError} />
+                   <TextField className = {classes.textField} variant = "filled" color = "secondary"  label = "Create Username" onChange = {(e)=>setUsername(e.target.value)} error = {usernameError} />
+                   <TextField className = {classes.textField} variant = "filled" color = "secondary"  label = "Phone Number" type = "Number" onChange = {(e)=>setPhoneNumber(e.target.value)}/>
+                   <TextField className = {classes.textField} variant = "filled" color = "secondary"  label = "Create Password" type = "Password" onChange = {(e)=>setPassword(e.target.value)} error = {passwordError} />
+                   <TextField className = {classes.textField} variant = "filled" color = "secondary"  label = "Confirm Password" type = "Password" onChange = {(e)=>setCPassword(e.target.value)}/>
                    <Button className = {classes.buttons} color = "primary" type = "submit" variant = "contained" fullWidth >Sign up</Button>
                    </form>
                    <p><Typography variant = "h7"  color = "textPrimary" family = "Roboto" gutterBottom>
@@ -106,6 +108,7 @@ const Signup = () => {
                </Paper>
            </Grid>
        </main> 
+       </ThemeProvider>
        <Credit/>
     </>
     );

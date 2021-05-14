@@ -60,7 +60,6 @@ const App = () => {
           
         </Switch>
         </Router>
-        <Credit/>
         </CssBaseline>
         </>}
     </>

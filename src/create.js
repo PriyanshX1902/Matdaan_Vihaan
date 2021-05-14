@@ -1,10 +1,11 @@
 import useStyles from './Components/styles';
-import {Typography, Container, Button, TextField, Paper, Grid } from '@material-ui/core';
+import {Typography, Container, Button, TextField, Paper, Grid, ThemeProvider } from '@material-ui/core';
 import LoggedNavbar from './Components/loggedNavbar';
 import React from 'react';
 import {useEffect} from 'react'
 import axios from 'axios';
 import fire from 'firebase';
+import useTheme from './Components/theme';
 
 const Create = () => {
 
@@ -45,8 +46,10 @@ const Create = () => {
 
 
     return(
+      <ThemeProvider theme = {useTheme}>
        <main>
            <LoggedNavbar/>
+           <div className = {classes.container}>
            <Container className = {classes.cardGrid} maxWidth = "md">
         <Typography variant="h2" align="center" color="textPrimary" family="Roboto" gutterBottom>
         CREATE AN ELECTION
@@ -57,10 +60,10 @@ const Create = () => {
         Election Details
         </Typography>
     <form onSubmit = {handleGenerateCode}>
-        <TextField required className = {classes.textFieldCreate} variant = "outlined" color = "primary"  label = "Title" onChange = {(e)=>{setTitle(e.target.value)}}/>
-        <TextField required className = {classes.textFieldCreate} variant = "outlined" color = "primary"  label = "Organization/Insitution" onChange = {(e)=>{setOrganisation(e.target.value)}}/>
-        <TextField required className = {classes.textFieldCreate} variant = "outlined" color = "primary"  label = "Description" onChange = {(e)=>{setDescription(e.target.value)}}/>
-        <TextField required className = {classes.textFieldCreate} variant = "outlined" color = "primary"  label = "Date" type = "date" defaultValue = "" onChange = {(e)=>{setDate(e.target.value)}}/>
+        <TextField required className = {classes.textFieldCreate} variant = "filled" color = "secondary"  label = "Title" onChange = {(e)=>{setTitle(e.target.value)}}/>
+        <TextField required className = {classes.textFieldCreate} variant = "filled" color = "secondary"  label = "Organization/Insitution" onChange = {(e)=>{setOrganisation(e.target.value)}}/>
+        <TextField required className = {classes.textFieldCreate} variant = "filled" color = "secondary"  label = "Description" onChange = {(e)=>{setDescription(e.target.value)}}/>
+        <TextField required className = {classes.textFieldCreate} variant = "filled" color = "secondary"  label = "Date" type = "date" defaultValue = "" onChange = {(e)=>{setDate(e.target.value)}}/>
         {electionGenerated ? (
           <>
           <Typography variant="h4" align="center" color="textPrimary" family="Roboto" gutterBottom>Election succesfully generated!! Your election code is {code}</Typography>
@@ -75,7 +78,9 @@ const Create = () => {
     </Paper>
     </Grid>
          </Container>
-       </main> 
+         </div>
+       </main>
+     </ThemeProvider>   
     );
 }
 export default Create;

@@ -1,17 +1,20 @@
-import {Typography} from '@material-ui/core';
+import {Typography, ThemeProvider} from '@material-ui/core';
 import useStyles from './styles';
+import useTheme from './theme';
 
 const Credit = ()  => {
     const classes = useStyles();
     return(
-        <footer className = {classes.footer}>
+        <ThemeProvider theme = {useTheme}>
+        <footer className = {classes.footer} color = "primary">
             <Typography variant="h6" align="center" gutterBottom color = "textPrimary">
                 Made by Priyansh Bhatnagar and Sneha Singh
             </Typography>
-            <Typography variant="subtitle1" align="center" color="textSecondary" gutterBottom>
-                xomeone@somenone.com
+            <Typography variant="subtitle1" align="center" color="textPrimary" gutterBottom>
+                praudyogikee1@gmail.com
             </Typography>
         </footer>
+        </ThemeProvider>
     );
 }
 export default Credit;

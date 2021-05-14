@@ -1,10 +1,11 @@
 import useStyles from './Components/styles';
-import {Typography, Container, Button, TextField, Paper } from '@material-ui/core';
+import {Typography, Container, Button, TextField, Paper, ThemeProvider } from '@material-ui/core';
 import LoggedNavbar from './Components/loggedNavbar';
 import React from 'react';
 import fire from './firebase';
 import axios from 'axios';
 import Alert from '@material-ui/lab/Alert';
+import useTheme from './Components/theme';
 
 const Voter = () => {
 
@@ -49,8 +50,10 @@ const Voter = () => {
 
     }
     return(
+        <ThemeProvider theme = {useTheme}>
        <main>
            <LoggedNavbar/>
+           <div className = {classes.container}>
            <Container className = {classes.cardGrid} maxWidth = "md">
         <Typography variant="h2" align="center" color="textPrimary" family="Roboto" gutterBottom>
         PARTICIPATE AS A VOTER
@@ -61,7 +64,7 @@ const Voter = () => {
         </Typography>
     <form onSubmit = {handleVoter}>
     {error &&<Alert severity="error" >{error}</Alert>}
-        <TextField required className = {classes.textFieldCreate} variant = "outlined" color = "primary"  label = "Election Code" onChange = {(e)=>{setElectionCode(e.target.value)}} error = {error}/>
+        <TextField required className = {classes.textFieldCreate} variant = "filled" color = "secondary"  label = "Election Code" onChange = {(e)=>{setElectionCode(e.target.value)}} error = {error}/>
         {success?(
             <>
              <Typography variant = "h5" align = "center" color = "textPrimary" family = "Roboto" gutterBottom>
@@ -80,7 +83,9 @@ const Voter = () => {
     </Paper>
        
          </Container>
+         </div>
        </main> 
+       </ThemeProvider>
     );
 }
 export default Voter;
