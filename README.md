@@ -13,7 +13,7 @@ Our project focuses on making the process of online voting/election more safe,se
   3) Express.Js
   4) Firebase
   5) Ethereum
-  6) web3j
+  6) web3.js
   
 ## Devfolio Link
 * [Devfolio Link Here](https://devfolio.co/submissions/matdaan-fed7)
